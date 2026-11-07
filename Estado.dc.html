@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mi Cartilla - Estado de vacunación</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#1f5f56}a:hover{color:#123a34}
+</style>
+</helmet>
+<div style="min-height: 900px; box-sizing: border-box; background: #f4f4f1; color: #222; font-family: system-ui, sans-serif; display: flex; flex-direction: column">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 32px; background: #ffffff; border-bottom: 2px solid #222">
+<a href="index.dc.html" style="font-size: 22px; font-weight: 700; color: #222; text-decoration: none">Mi Cartilla</a>
+<nav style="display: flex; flex-wrap: wrap; gap: 8px">
+<a href="index.dc.html" style="min-height: 44px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; border: 2px solid #bbbbbb; border-radius: 6px; color: #222; text-decoration: none; font-size: 15px">Perfil</a>
+<a href="Estado.dc.html" style="min-height: 44px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; border: 2px solid #222; border-radius: 6px; background: #222; color: #ffffff; text-decoration: none; font-size: 15px">Estado de vacunación</a>
+<a href="Vacuna.dc.html" style="min-height: 44px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; border: 2px solid #bbbbbb; border-radius: 6px; color: #222; text-decoration: none; font-size: 15px">Información de vacunas</a>
+<a href="Historial.dc.html" style="min-height: 44px; box-sizing: border-box; padding: 0 16px; display: flex; align-items: center; border: 2px solid #bbbbbb; border-radius: 6px; color: #222; text-decoration: none; font-size: 15px">Historial</a>
+</nav>
+</header>
+
+<main style="flex: 1; width: 100%; max-width: 1180px; margin: 0 auto; box-sizing: border-box; padding: 40px 32px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px">
+<div>
+<h1 id="tituloPersona" style="margin: 0; font-size: 32px; line-height: 1.15">Cartilla de Salud</h1>
+<p id="subtInfo" style="margin: 4px 0 0 0; font-size: 16px; color: #555">Cargando información del perfil...</p>
+</div>
+<a href="index.dc.html" style="padding: 10px 16px; background: #fff; border: 2px solid #222; border-radius: 6px; text-decoration: none; font-weight: 600; color: #222">Cambiar de perfil</a>
+</div>
+
+<div style="background: #ffffff; border: 2px solid #222; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-size: 20px">Esquema de vacunación recomendado</h2>
+<div style="display: flex; flex-direction: column; gap: 12px">
+
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 14px; border: 1px solid #ccc; border-radius: 6px; background: #fafafa">
+<div>
+<div style="font-weight: 700; font-size: 16px">Tétanos y Difteria (Td)</div>
+<div style="font-size: 14px; color: #666">Refuerzo cada 10 años</div>
+</div>
+<label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600">
+<input type="checkbox" style="width: 20px; height: 20px"> Aplicada
+</label>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 14px; border: 1px solid #ccc; border-radius: 6px; background: #fafafa">
+<div>
+<div style="font-weight: 700; font-size: 16px">Hepatitis B</div>
+<div style="font-size: 14px; color: #666">Esquema de 3 dosis</div>
+</div>
+<label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600">
+<input type="checkbox" style="width: 20px; height: 20px"> Aplicada
+</label>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 14px; border: 1px solid #ccc; border-radius: 6px; background: #fafafa">
+<div>
+<div style="font-weight: 700; font-size: 16px">Influenza Estacional</div>
+<div style="font-size: 14px; color: #666">Dosis anual recomendada</div>
+</div>
+<label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600">
+<input type="checkbox" style="width: 20px; height: 20px"> Aplicada
+</label>
+</div>
+
+</div>
+</div>
+
+</main>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    const guardado = localStorage.getItem('personaActual');
+    if (guardado) {
+      const persona = JSON.parse(guardado);
+      document.getElementById('tituloPersona').textContent = `Cartilla de: ${persona.nombre}`;
+      document.getElementById('subtInfo').textContent = `Relación: ${persona.relacion} | Fecha de nacimiento: ${persona.nacimiento}`;
+    }
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
