@@ -1,5 +1,5 @@
 {
-    "routes": [
-      { "src": "/", "destination": "/index.dc.html" }
-    ]
-  }
+  "routes": [
+    { "src": "/", "destination": "/index.html" }
+  ]
+}
